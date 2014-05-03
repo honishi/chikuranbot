@@ -1,9 +1,15 @@
 chikuranbot
 ==
-snapshot keeper for chikura-chan ranking.
+chikuwa-chan ranking snapshot keeper.
+
+sample
+--
+![tweet](./sample/tweet.png)
 
 setup
 --
+the following procedure is the one for mac os x.
+
 ````
 # python runtime
 brew update && brew install pyenv pyenv-virtualenv
@@ -13,7 +19,7 @@ pip install -r requirements.txt
 # headless browser
 brew install phantomjs
 
-# configure
+# application configuration
 cp ./go.env.sample ./go.env
 vi ./go.env
 ````
@@ -21,7 +27,7 @@ vi ./go.env
 sample usage using crontab
 --
 
-	*/5 * * * * /path/to/chikuranbot/go.sh >> /path/to/dev/chikuranbot/go.log 2>&1
+	*/5 * * * * /path/to/chikuranbot/go.sh >> /path/to/chikuranbot/go.log 2>&1
 
 license
 --
