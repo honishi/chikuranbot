@@ -14,7 +14,7 @@ cd ${basedir}
 
 source ./go.env
 
-phantomjs ./rasterize.js "${url_chikuran}" ${output}
+phantomjs ./rasterize.js "${user_agent}" "${url_chikuran}" ${output}
 ./tweet.py "${consumer_key}" "${consumer_secret}" "${access_key}" "${access_secret}" "${output}"
 
 echo '***' $(date) finished.
