@@ -5,7 +5,7 @@ import os
 import sys
 import re
 from datetime import datetime as dt
-from twitter import *
+from twython import Twython
 
 
 if __name__ == "__main__":
@@ -16,13 +16,16 @@ if __name__ == "__main__":
     consumer_secret = sys.argv[2]
     access_key = sys.argv[3]
     access_secret = sys.argv[4]
-    url = sys.argv[5]
+    image_file = sys.argv[5]
 
-    matched = re.match(r'(http://)(.+)', url)
-    if matched:
-        url = matched.group(1) + 'i.' + matched.group(2) + '.png'
+    status = "{d.year}年{d.month}月{d.day}日{d.hour}時{d.minute:02}分頃のちくらん".format(d=dt.now())
+    media = open(image_file, 'rb')
 
-    message = "{d.year}年{d.month}月{d.day}日{d.hour}時{d.minute:02}分頃のちくらん {url}".format(d=dt.now(), url=url)
+    twitter = Twython(consumer_key, consumer_secret, access_key, access_secret)
+    response = twitter.update_status_with_media(status=status, media=media)
+    # print(response)
 
-    t = Twitter(auth=OAuth(access_key, access_secret, consumer_key, consumer_secret))
-    t.statuses.update(status=message)
+    limit = twitter.get_lastfunction_header('X-MediaRateLimit-Limit')
+    remaining = twitter.get_lastfunction_header('X-MediaRateLimit-Remaining')
+    reset = twitter.get_lastfunction_header('X-MediaRateLimit-Reset')
+    print("rate limit, limit: {} remaining: {} reset: {}".format(limit, remaining, reset))
