@@ -1,4 +1,4 @@
-var width = 1000, height = 1200;
+var width = 1000, height = 1300;
 var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'
 var wait = 2000;
 
