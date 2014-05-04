@@ -4,11 +4,16 @@
 import os
 import sys
 import re
+import time
 from datetime import datetime as dt
 from twython import Twython
 
 
-if __name__ == "__main__":
+MAX_RETRY_COUNT = 5
+SLEEP_WHEN_RETRY = 5
+
+
+def main():
     if len(sys.argv) != 6:
         print('not enough arguments')
 
@@ -21,11 +26,28 @@ if __name__ == "__main__":
     status = "{d.year}年{d.month}月{d.day}日{d.hour}時{d.minute:02}分頃のちくらん".format(d=dt.now())
     media = open(image_file, 'rb')
 
-    twitter = Twython(consumer_key, consumer_secret, access_key, access_secret)
-    response = twitter.update_status_with_media(status=status, media=media)
-    # print(response)
+    retry_count = 0
+    while True:
+        try:
+            twitter = Twython(consumer_key, consumer_secret, access_key, access_secret)
+            response = twitter.update_status_with_media(status=status, media=media)
+            # print(response)
+            # raise Exception("retry test")
+            break
+        except Exception as e:
+            print("caught exception: {}".format(e))
+            if retry_count == MAX_RETRY_COUNT:
+                print("retried over.")
+                os.sys.exit(1)
+            retry_count += 1
+            print("retrying({}/{})...".format(retry_count, MAX_RETRY_COUNT))
+            time.sleep(SLEEP_WHEN_RETRY)
 
     limit = twitter.get_lastfunction_header('X-MediaRateLimit-Limit')
     remaining = twitter.get_lastfunction_header('X-MediaRateLimit-Remaining')
     reset = twitter.get_lastfunction_header('X-MediaRateLimit-Reset')
     print("rate limit, limit: {} remaining: {} reset: {}".format(limit, remaining, reset))
+
+
+if __name__ == "__main__":
+    main()
