@@ -9,7 +9,7 @@ from datetime import datetime as dt
 from twython import Twython
 
 
-MAX_RETRY_COUNT = 5
+MAX_RETRY_COUNT = 20
 SLEEP_WHEN_RETRY = 5
 
 
@@ -29,10 +29,10 @@ def main():
     retry_count = 0
     while True:
         try:
+            # raise Exception("retry test")
             twitter = Twython(consumer_key, consumer_secret, access_key, access_secret)
             response = twitter.update_status_with_media(status=status, media=media)
             # print(response)
-            # raise Exception("retry test")
             break
         except Exception as e:
             print("caught exception: {}".format(e))
@@ -41,6 +41,7 @@ def main():
                 os.sys.exit(1)
             retry_count += 1
             print("retrying({}/{})...".format(retry_count, MAX_RETRY_COUNT))
+            sys.stdout.flush()
             time.sleep(SLEEP_WHEN_RETRY)
 
     limit = twitter.get_lastfunction_header('X-MediaRateLimit-Limit')
