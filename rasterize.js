@@ -1,5 +1,5 @@
 var width = 1000, height = 1300;
-var clipLeft = 0, clipTop = 50, clipWidth = 770, clipHeight = 1100;
+var clipLeft = 0, clipTop = 180, clipWidth = 770, clipHeight = 970;
 var wait = 2000;
 
 var page = require('webpage').create(),
