@@ -6,6 +6,8 @@ sample
 --
 ![tweet](./sample/tweet.png)
 
+* https://twitter.com/chikuranbot
+
 setup
 --
 the following procedure is the one for mac os x.
