@@ -15,7 +15,8 @@ SLEEP_WHEN_RETRY = 5
 
 def main():
     if len(sys.argv) != 6:
-        print('not enough arguments')
+        print("not enough arguments.")
+        os.sys.exit(1)
 
     consumer_key = sys.argv[1]
     consumer_secret = sys.argv[2]

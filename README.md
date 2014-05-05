@@ -29,7 +29,7 @@ vi ./go.env
 sample usage using crontab
 --
 
-	*/5 * * * * /path/to/chikuranbot/go.sh >> /path/to/chikuranbot/go.log 2>&1
+	*/2 * * * * /path/to/chikuranbot/go.sh >> /path/to/chikuranbot/go.log 2>&1
 
 license
 --
