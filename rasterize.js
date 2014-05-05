@@ -1,5 +1,5 @@
 var width = 1000, height = 1300;
-var clipLeft = 0, clipTop = 180, clipWidth = 770, clipHeight = 970;
+var clipLeft = 0, clipTop = 180, clipWidth = 770, clipHeight = 840;
 var wait = 2000;
 
 var page = require('webpage').create(),
@@ -21,6 +21,12 @@ if (system.args.length !== 4 ) {
             console.log('Unable to load the address!');
             phantom.exit(1);
         } else {
+            page.evaluate(function() {
+                var ads = document.getElementsByClassName('geenee');
+                for (var i=0; i<ads.length; i++) {
+                    ads[i].parentNode.removeChild(ads[i]);
+                }
+            });
             window.setTimeout(function () {
                 page.render(output);
                 phantom.exit();
