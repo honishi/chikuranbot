@@ -9,7 +9,7 @@ from datetime import datetime as dt
 from twython import Twython
 
 
-MAX_RETRY_COUNT = 20
+MAX_RETRY_COUNT = 10
 SLEEP_WHEN_RETRY = 5
 
 
@@ -23,7 +23,8 @@ def main():
     access_secret = sys.argv[4]
     image_file = sys.argv[5]
 
-    status = "{d.year}年{d.month}月{d.day}日{d.hour}時{d.minute:02}分頃のちくらん".format(d=dt.now())
+    status = ("{d.year}年{d.month}月{d.day}日{d.hour}時{d.minute:02}分頃のちくらん"
+              .format(d=dt.now()))
     media = open(image_file, 'rb')
 
     retry_count = 0
