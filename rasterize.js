@@ -18,6 +18,9 @@ else {
     page.clipRect = { left: clipLeft, top: clipTop, width: clipWidth, height: clipHeight };
     page.settings.userAgent = ua
 
+    /* force ads to be turned off */
+    page.settings.javascriptEnabled = false;
+
     page.open(address, function (status) {
         if (status !== 'success') {
             console.log('Unable to load the address!');
@@ -26,35 +29,6 @@ else {
         else {
             window.setTimeout(function () {
                 console.log('rasterizing...');
-
-                /* for console log in page.evaluate(). */
-                page.onConsoleMessage = function (message){
-                    console.log(message);
-                };
-
-                page.evaluate(function(){
-                    function removeElementsByClassName(className) {
-                        console.log('removing elements by class name: ' + className);
-                        var elements = document.getElementsByClassName(className);
-                        for (var i=0; i<elements.length; i++) {
-                            elements[i].parentNode.removeChild(elements[i]);
-                            console.log('removed.');
-                        }
-                    }
-
-                    function removeElementById(idName) {
-                        console.log('removing element by id name: ' + idName);
-                        var element = document.getElementById(idName);
-                        if (element) {
-                            element.parentNode.removeChild(element);
-                            console.log('removed.');
-                        }
-                    }
-
-                    removeElementsByClassName('geenee');
-                    removeElementById('ninja_iframe_1');
-		});
-
                 page.render(output);
                 phantom.exit();
             }, wait);
