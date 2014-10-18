@@ -15,6 +15,7 @@ the following procedure is the one for mac os x.
 ````
 # python runtime
 brew update && brew install pyenv pyenv-virtualenv
+pyenv install 3.3.3
 pyenv virtualenv 3.3.3 chikuranbot-3.3.3
 pip install -r requirements.txt
 
@@ -30,6 +31,15 @@ sample usage using crontab
 --
 
 	*/2 * * * * /path/to/chikuranbot/go.sh >> /path/to/chikuranbot/go.log 2>&1
+
+memo
+--
+### pyenv issue on os x
+
+try following option when you get python build error when `pyenv install`.
+````
+CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install 3.3.3
+````
 
 license
 --
