@@ -1,3 +1,0 @@
-go.env*
-!go.env.sample
-go.log
