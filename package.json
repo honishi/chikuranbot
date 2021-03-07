@@ -1,0 +1,11 @@
+{
+  "name": "chikuranbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:honishi/chikuranbot.git",
+  "author": "Hiroyuki Onishi <onishi.hiroyuki@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer-core": "^8.0.0"
+  }
+}

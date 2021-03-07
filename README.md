@@ -10,35 +10,14 @@ sample
 
 setup
 --
-the following procedure is the one for mac os x.
-
 ````
-# python runtime
-brew update && brew install pyenv pyenv-virtualenv
-pyenv install 3.3.3
-pyenv virtualenv 3.3.3 chikuranbot-3.3.3
-pip install -r requirements.txt
+# node runtime
+nvm install 15
+npm install -g yarn
+yarn install
 
-# headless browser
-brew install phantomjs
-
-# application configuration
-cp ./go.env.sample ./go.env
-vi ./go.env
-````
-
-sample usage using crontab
---
-
-	*/2 * * * * /path/to/chikuranbot/go.sh >> /path/to/chikuranbot/go.log 2>&1
-
-memo
---
-### pyenv issue on os x
-
-try following option when you get python build error when `pyenv install`.
-````
-CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install 3.3.3
+# modify puppeteer for Apple Silicon Mac
+# https://qiita.com/Buzzword111/items/aa5dd4c89358a63f970a
 ````
 
 license
