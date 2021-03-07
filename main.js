@@ -67,8 +67,12 @@ async function tweetScreenshot() {
 
 function makeTweetText() {
     const d = new Date()
-    return d.getFullYear() + '年' + d.getMonth() + '月' + d.getDay() + '日'
-        + d.getHours() + '時' + d.getMinutes() + '分ごろのちくらん'
+    const year = d.getFullYear()
+    const month = d.getMonth() + 1
+    const day = d.getDate()
+    const hour = d.getHours()
+    const min = d.getMinutes()
+    return `${year}年${month}月${day}日${hour}時${min}分頃のちくらん`
 }
 
 takeScreenshot().then(r => {
