@@ -5,10 +5,12 @@ const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_2) AppleWebKit/53
 const chikuran = 'http://www.chikuwachan.com/live/'
 const screenshot = 'screenshot.png'
 
+const chrome_mac = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+const chrome_raspberry_pi = '/usr/bin/chromium-browser'
+
 async function takeScreenshot() {
     const browser = await puppeteer.launch({
-        executablePath:
-            '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+        executablePath: chrome_raspberry_pi,
         // https://stackoverflow.com/a/61050539
         args: [
             '--ignore-certificate-errors',
@@ -22,7 +24,7 @@ async function takeScreenshot() {
     await page.setUserAgent(userAgent)
     await page.setViewport({width: 1100, height: 1000, deviceScaleFactor: 2});
     await page.setJavaScriptEnabled(true)
-    await page.setDefaultNavigationTimeout(10000)
+    // await page.setDefaultNavigationTimeout(10000)
     console.log('Opening the page...')
     // const waitUntil = 'domcontentloaded'
     // const waitUntil = 'networkidle0'

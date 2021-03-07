@@ -6,6 +6,7 @@
   "author": "Hiroyuki Onishi <onishi.hiroyuki@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "puppeteer": "^8.0.0",
     "puppeteer-core": "^8.0.0",
     "twitter": "^1.7.1"
   }
