@@ -22,7 +22,7 @@ async function takeScreenshot() {
     })
     const page = await browser.newPage()
     await page.setUserAgent(userAgent)
-    await page.setViewport({width: 1100, height: 1000, deviceScaleFactor: 2});
+    await page.setViewport({width: 1050, height: 1000, deviceScaleFactor: 2});
     await page.setJavaScriptEnabled(true)
     // await page.setDefaultNavigationTimeout(10000)
     console.log('Opening the page...')
